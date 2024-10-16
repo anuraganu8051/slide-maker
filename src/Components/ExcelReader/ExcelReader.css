@@ -1,6 +1,11 @@
 .excel-reader-container {
   text-align: start;
 }
+.nav-bar {
+  position: sticky;
+  top: 0;
+  background: #a2d2df;
+}
 
 .inputField {
   display: inline-block;

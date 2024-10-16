@@ -6,4 +6,8 @@ export const TEXT = {
   Biology: "Biology",
   Math: "Math",
   Reasoning: "Reasoning",
+  WHITE: "White",
+  ENGLISH: "English",
+  HINDI: "Hindi",
+  HINGLISH: "Hinglish",
 };

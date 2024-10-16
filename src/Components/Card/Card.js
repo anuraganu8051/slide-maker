@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import html2canvas from "html2canvas";
 import "./Card.css";
+import { TEXT } from "../Container/text";
 
 const Card = ({
   data,
@@ -10,8 +11,20 @@ const Card = ({
   paper,
   screenType,
   showAnswer,
+  language,
 }) => {
-  const { option_A, option_B, option_C, option_D, answer } = data;
+  const {
+    option_A,
+    option_B,
+    option_C,
+    option_D,
+    answer,
+    option_A_H,
+    option_B_H,
+    option_C_H,
+    option_D_H,
+    answer_H,
+  } = data;
 
   const handleDownload = (id) => {
     const card = document.getElementById(id);
@@ -21,6 +34,14 @@ const Card = ({
       link.download = `${paper}_${Qno}.png`;
       link.click();
     });
+  };
+
+  const optionFormate = (option_A, option_A_H) => {
+    return language == TEXT.HINGLISH
+      ? `${option_A_H} / ${option_A}`
+      : language == TEXT.ENGLISH
+      ? option_A
+      : option_A_H;
   };
 
   useEffect(() => {
@@ -64,7 +85,15 @@ const Card = ({
         <div className="card-body">
           <div className="question-container">
             <div className="question-number-column">({Qno})</div>
-            <div className="question-text-column">{data.question}</div>
+            <div className="question-text-column">
+              {(language == TEXT.HINDI || language == TEXT.HINGLISH) && (
+                <div>{data.question_H}</div>
+              )}
+              {/* {language == TEXT.HINGLISH && <br />} */}
+              {(language == TEXT.ENGLISH || language == TEXT.HINGLISH) && (
+                <div>{data.question}</div>
+              )}
+            </div>
           </div>
           <div
             className={`option-container ${
@@ -76,8 +105,13 @@ const Card = ({
             }`}
           >
             <div className="option-letter">(A)</div>
-            <div className="option-text">{option_A}</div>
+
+            <div className="option-text">
+              {optionFormate(option_A, option_A_H)}
+            </div>
+            {/* <div>{option_A_H}</div> */}
           </div>
+
           <div
             className={`option-container ${
               showAnswer
@@ -88,7 +122,9 @@ const Card = ({
             }`}
           >
             <div className="option-letter">(B)</div>
-            <div className="option-text">{option_B}</div>
+            <div className="option-text">
+              {optionFormate(option_B, option_B_H)}
+            </div>
           </div>
           <div
             className={`option-container ${
@@ -100,7 +136,9 @@ const Card = ({
             }`}
           >
             <div className="option-letter">(C)</div>
-            <div className="option-text">{option_C}</div>
+            <div className="option-text">
+              {optionFormate(option_C, option_C_H)}
+            </div>
           </div>
           <div
             className={`option-container ${
@@ -112,7 +150,9 @@ const Card = ({
             }`}
           >
             <div className="option-letter">(D)</div>
-            <div className="option-text">{option_D}</div>
+            <div className="option-text">
+              {optionFormate(option_D, option_D_H)}
+            </div>
           </div>
           {/* <div className="correct-answer-container">
           <div className="correct-answer-letter">(D)</div>

@@ -12,6 +12,7 @@ const ExcelReader = () => {
   const [start, setStart] = useState(0);
   const [numOfQuestion, setNumOfQuestion] = useState(5);
   const [screenType, setScreenType] = useState("shorts");
+  const [language, setLanguage] = useState(TEXT.ENGLISH);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -44,6 +45,10 @@ const ExcelReader = () => {
     setScreenType(type);
   };
 
+  const handleLanguage = (language) => {
+    setLanguage(language);
+  };
+
   useEffect(() => {
     if (data) {
       console.log("data => ", data);
@@ -53,60 +58,77 @@ const ExcelReader = () => {
   return (
     <>
       <div className="excel-reader-container">
-        <input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
+        <div className="nav-bar">
+          <input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
 
-        <button onClick={() => setDownloadAll(true)}>Download All</button>
+          <button onClick={() => setDownloadAll(true)}>Download All</button>
 
-        <label htmlFor="paper-type">Paper Type:</label>
-        <select
-          id="paper-type"
-          name="paper-type"
-          onChange={(event) => {
-            handlePaperType(event.target.value);
-          }}
-        >
-          <option value={TEXT.Physics}>{TEXT.Physics}</option>
-          <option value={TEXT.Chemistry}>{TEXT.Chemistry}</option>
-          <option value={TEXT.Biology}>{TEXT.Biology}</option>
-          <option value={TEXT.Math}>{TEXT.Math}</option>
-          <option value={TEXT.Reasoning}>{TEXT.Reasoning}</option>
-        </select>
-        <label htmlFor="startFrom">Start from</label>
-        <input
-          id="startFrom"
-          className="inputField"
-          type="number"
-          value={start}
-          onChange={(event) => {
-            handleStart(event.target.value);
-          }}
-          // placeholder="Start from"
-          min={0}
-        />
+          <label htmlFor="paper-type">Paper Type:</label>
+          <select
+            id="paper-type"
+            name="paper-type"
+            onChange={(event) => {
+              handlePaperType(event.target.value);
+            }}
+          >
+            <option value={TEXT.Physics}>{TEXT.Physics}</option>
+            <option value={TEXT.Chemistry}>{TEXT.Chemistry}</option>
+            <option value={TEXT.Biology}>{TEXT.Biology}</option>
+            <option value={TEXT.Math}>{TEXT.Math}</option>
+            <option value={TEXT.Reasoning}>{TEXT.Reasoning}</option>
+          </select>
+          <label htmlFor="startFrom">Start from</label>
+          <input
+            id="startFrom"
+            className="inputField"
+            type="number"
+            value={start}
+            onChange={(event) => {
+              handleStart(event.target.value);
+            }}
+            // placeholder="Start from"
+            min={0}
+          />
 
-        <label htmlFor="questionCount">No. of question</label>
-        <input
-          id="questionCount"
-          className="inputField"
-          type="number"
-          value={numOfQuestion}
-          onChange={(event) => {
-            handleQuestionChange(event.target.value);
-          }}
-          min={1}
-        />
+          <label htmlFor="questionCount">No. of question</label>
+          <input
+            id="questionCount"
+            className="inputField"
+            type="number"
+            value={numOfQuestion}
+            onChange={(event) => {
+              handleQuestionChange(event.target.value);
+            }}
+            min={1}
+          />
 
-        <label htmlFor="screen-type">Screen Type:</label>
-        <select
-          id="screen-type"
-          name="screen-type"
-          onChange={(event) => {
-            handleScreenType(event.target.value);
-          }}
-        >
-          <option value="shorts">Shorts</option>
-          <option value="videos">Videos</option>
-        </select>
+          {/* SCREEN RESOLUATION */}
+          <label htmlFor="screen-type">Screen Type:</label>
+          <select
+            id="screen-type"
+            name="screen-type"
+            onChange={(event) => {
+              handleScreenType(event.target.value);
+            }}
+          >
+            <option value="shorts">Shorts</option>
+            <option value="videos">Videos</option>
+          </select>
+
+          {/* SELECH LANGUAGE */}
+          <label htmlFor="screen-type">Language :</label>
+          <select
+            id="screen-type"
+            name="screen-type"
+            onChange={(event) => {
+              handleLanguage(event.target.value);
+            }}
+          >
+            <option value={TEXT.ENGLISH}>{TEXT.ENGLISH}</option>
+            <option value={TEXT.HINDI}>{TEXT.HINDI}</option>
+            <option value={TEXT.HINGLISH}>{TEXT.HINGLISH}</option>
+          </select>
+        </div>
 
         {data &&
           data.map((item, index) => {
@@ -121,6 +143,7 @@ const ExcelReader = () => {
                     paper={paper}
                     screenType={screenType}
                     showAnswer={false}
+                    language={language}
                   />
                   <Card
                     data={item}
@@ -130,6 +153,7 @@ const ExcelReader = () => {
                     paper={paper}
                     screenType={screenType}
                     showAnswer={true}
+                    language={language}
                   />
                 </div>
               );
