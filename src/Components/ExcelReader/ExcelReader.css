@@ -1,3 +1,8 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
 .excel-reader-container {
   text-align: start;
 }

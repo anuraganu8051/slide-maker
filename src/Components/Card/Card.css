@@ -34,11 +34,95 @@
 }
 
 .Biology {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(135deg, #43cea2, #185a9d);
 }
 
 .Math {
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+}
+
+.Reasoning {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.CDP {
+  background: linear-gradient(135deg, #fbc2eb, #a18cd1);
+}
+
+.GeneralKnowledge {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+.GeneralAwareness {
+  background: linear-gradient(135deg, #56ab2f, #a8e063);
+}
+
+.CurrentAffairs {
+  background: linear-gradient(135deg, #2193b0, #6dd5ed);
+}
+
+.Polity {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+}
+
+.History {
+  background: linear-gradient(135deg, #c79081, #dfa579);
+}
+
+.Geography {
+  background: linear-gradient(135deg, #56ccf2, #2f80ed);
+}
+
+.Economy {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+.StaticGK {
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+}
+
+.ComputerAwareness {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+.Science {
+  background: linear-gradient(135deg, #1d976c, #93f9b9);
+}
+
+.English {
+  background: linear-gradient(135deg, #8360c3, #2ebf91);
+}
+
+.Hindi {
+  background: linear-gradient(135deg, #ff512f, #f09819);
+}
+
+.EnvironmentalStudies {
+  background: linear-gradient(135deg, #00b09b, #96c93d);
+}
+
+.QuantitativeAptitude {
+  background: linear-gradient(135deg, #fc4a1a, #f7b733);
+}
+
+.DataInterpretation {
+  background: linear-gradient(135deg, #5f2c82, #49a09d);
+}
+
+.LogicalReasoning {
+  background: linear-gradient(135deg, #4568dc, #b06ab3);
+}
+
+.TeachingAptitude {
+  background: linear-gradient(135deg, #f857a6, #ff5858);
+}
+
+.Pedagogy {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+.ChildPsychology {
+  background: linear-gradient(135deg, #ffb347, #ffcc33);
 }
 
 .Reasoning {
@@ -112,13 +196,14 @@
   margin: 10px 0;
 }
 .correct-answer {
-  color: green;
+  /* color: #099242ff; */
+  /* color: green; */
   font-weight: bold;
 }
 
 .wrong-answer {
-  color: red;
-  font-weight: bold;
+  /* color: red;
+  font-weight: bold; */
 }
 
 .option-letter {

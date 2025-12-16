@@ -5,14 +5,45 @@ import * as XLSX from "xlsx";
 
 import "./ExcelReader.css";
 
+const subjectList = [
+  "Physics",
+  "Chemistry",
+  "Biology",
+  "Math",
+  "Reasoning",
+  "CDP",
+  "General Knowledge",
+  "General Awareness",
+  "Current Affairs",
+  "Polity",
+  "History",
+  "Geography",
+  "Economy",
+  "Static GK",
+  "Computer Awareness",
+  "Science",
+  "English",
+  "Hindi",
+  "Environmental Studies",
+  "Quantitative Aptitude",
+  "Data Interpretation",
+  "Logical Reasoning",
+  "Teaching Aptitude",
+  "Pedagogy",
+  "Child Psychology",
+];
 const ExcelReader = () => {
   const [data, setData] = useState([]);
   const [downloadAll, setDownloadAll] = useState(false);
-  const [paper, setPaper] = useState(TEXT.Physics);
+  const [paper, setPaper] = useState(subjectList[0]);
   const [start, setStart] = useState(0);
   const [numOfQuestion, setNumOfQuestion] = useState(5);
   const [screenType, setScreenType] = useState("shorts");
   const [language, setLanguage] = useState(TEXT.ENGLISH);
+  const [bodyFontSize, setBodyFontSize] = useState(16);
+  const [textColor, setTextColor] = useState("Black");
+  const [examName, setExamName] = useState(null);
+  const [extraInfo, setExtraInfo] = useState(null);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -49,6 +80,10 @@ const ExcelReader = () => {
     setLanguage(language);
   };
 
+  const handleBodyFontSize = (fontSize) => {
+    setBodyFontSize(fontSize);
+  };
+
   useEffect(() => {
     if (data) {
       console.log("data => ", data);
@@ -71,11 +106,16 @@ const ExcelReader = () => {
               handlePaperType(event.target.value);
             }}
           >
-            <option value={TEXT.Physics}>{TEXT.Physics}</option>
+            {subjectList.map((subject, index) => (
+              <option key={index} value={subject}>
+                {subject}
+              </option>
+            ))}
+            {/* <option value={TEXT.Physics}>{TEXT.Physics}</option>
             <option value={TEXT.Chemistry}>{TEXT.Chemistry}</option>
             <option value={TEXT.Biology}>{TEXT.Biology}</option>
             <option value={TEXT.Math}>{TEXT.Math}</option>
-            <option value={TEXT.Reasoning}>{TEXT.Reasoning}</option>
+            <option value={TEXT.Reasoning}>{TEXT.Reasoning}</option> */}
           </select>
           <label htmlFor="startFrom">Start from</label>
           <input
@@ -128,33 +168,95 @@ const ExcelReader = () => {
             <option value={TEXT.HINDI}>{TEXT.HINDI}</option>
             <option value={TEXT.HINGLISH}>{TEXT.HINGLISH}</option>
           </select>
+
+          {/* Body font size */}
+          <label htmlFor="bodyFontSize">Body font size</label>
+          <input
+            id="bodyFontSize"
+            className="inputField"
+            type="number"
+            value={bodyFontSize}
+            onChange={(event) => {
+              handleBodyFontSize(event.target.value);
+            }}
+            min={1}
+          />
+
+          {/* Body text color */}
+          <label htmlFor="screen-type">Text color :</label>
+          <select
+            id="screen-type"
+            name="screen-type"
+            onChange={(event) => {
+              setTextColor(event.target.value);
+            }}
+          >
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+          </select>
+
+          {/* Exam name */}
+          <label htmlFor="examName">Exam name</label>
+          <input
+            id="examName"
+            className="inputField"
+            type="text"
+            value={examName}
+            onChange={(event) => {
+              setExamName(event.target.value);
+            }}
+            placeholder="ex: JEE"
+          />
+
+          {/* Extra info */}
+          <label htmlFor="extraInfo">Extra Info</label>
+          <input
+            id="extraInfo"
+            className="inputField"
+            type="text"
+            value={extraInfo}
+            onChange={(event) => {
+              setExtraInfo(event.target.value);
+            }}
+            placeholder="info"
+          />
         </div>
 
         {data &&
           data.map((item, index) => {
             if (index >= start && index < +numOfQuestion + +start) {
               return (
-                <div key={index}>
-                  <Card
-                    data={item}
-                    Qno={index + 1 - start}
-                    downloadAll={downloadAll}
-                    setDownloadAll={setDownloadAll}
-                    paper={paper}
-                    screenType={screenType}
-                    showAnswer={false}
-                    language={language}
-                  />
-                  <Card
-                    data={item}
-                    Qno={index + 1 - start}
-                    downloadAll={downloadAll}
-                    setDownloadAll={setDownloadAll}
-                    paper={paper}
-                    screenType={screenType}
-                    showAnswer={true}
-                    language={language}
-                  />
+                <div key={index} className="card-container">
+                  <div>
+                    <Card
+                      data={item}
+                      Qno={index + 1 - start}
+                      downloadAll={downloadAll}
+                      setDownloadAll={setDownloadAll}
+                      paper={paper}
+                      screenType={screenType}
+                      showAnswer={false}
+                      language={language}
+                      bodyFontSize={bodyFontSize}
+                      textColor={textColor}
+                      examName={examName}
+                      extraInfo={extraInfo}
+                    />
+                    <Card
+                      data={item}
+                      Qno={index + 1 - start}
+                      downloadAll={downloadAll}
+                      setDownloadAll={setDownloadAll}
+                      paper={paper}
+                      screenType={screenType}
+                      showAnswer={true}
+                      language={language}
+                      bodyFontSize={bodyFontSize}
+                      textColor={textColor}
+                      examName={examName}
+                      extraInfo={extraInfo}
+                    />
+                  </div>
                 </div>
               );
             }
