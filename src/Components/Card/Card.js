@@ -35,7 +35,8 @@ const Card = ({
     html2canvas(card, { scale: 3 }).then((canvas) => {
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
-      link.download = `${paper}_${Qno}.png`;
+      link.download = `${id}.png`;
+      // link.download = `${paper}_${Qno}.png`;
       link.click();
     });
   };
@@ -81,6 +82,13 @@ const Card = ({
 
   return (
     <div key={Qno} className="card-container ">
+      {/* DOWNLOAD BUTTON FOR EACH CARD */}
+      <button
+        onClick={() => handleDownload(`card_${Qno}${showAnswer ? "_A" : ""}`)}
+        className=" btn btn-primary mb-2 align-self-start"
+      >
+        Download
+      </button>
       <div
         id={`card_${Qno}${showAnswer ? "_A" : ""}`}
         className={`card-background ${screenType} ${paper.replace(/\s+/g, "")}`}

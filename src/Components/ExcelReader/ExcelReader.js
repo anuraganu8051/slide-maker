@@ -94,132 +94,153 @@ const ExcelReader = () => {
     <>
       <div className="excel-reader-container">
         <div className="nav-bar">
-          <input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
-
-          <button onClick={() => setDownloadAll(true)}>Download All</button>
-
-          <label htmlFor="paper-type">Paper Type:</label>
-          <select
-            id="paper-type"
-            name="paper-type"
-            onChange={(event) => {
-              handlePaperType(event.target.value);
-            }}
-          >
-            {subjectList.map((subject, index) => (
-              <option key={index} value={subject}>
-                {subject}
-              </option>
-            ))}
-            {/* <option value={TEXT.Physics}>{TEXT.Physics}</option>
-            <option value={TEXT.Chemistry}>{TEXT.Chemistry}</option>
-            <option value={TEXT.Biology}>{TEXT.Biology}</option>
-            <option value={TEXT.Math}>{TEXT.Math}</option>
-            <option value={TEXT.Reasoning}>{TEXT.Reasoning}</option> */}
-          </select>
-          <label htmlFor="startFrom">Start from</label>
           <input
-            id="startFrom"
-            className="inputField"
-            type="number"
-            value={start}
-            onChange={(event) => {
-              handleStart(event.target.value);
-            }}
-            // placeholder="Start from"
-            min={0}
+            type="file"
+            accept=".xlsx, .xls"
+            onChange={handleFileUpload}
+            className="nav-bar-item"
           />
 
-          <label htmlFor="questionCount">No. of question</label>
-          <input
-            id="questionCount"
-            className="inputField"
-            type="number"
-            value={numOfQuestion}
-            onChange={(event) => {
-              handleQuestionChange(event.target.value);
-            }}
-            min={1}
-          />
+          <button onClick={() => setDownloadAll(true)} className="nav-bar-item">
+            Download All
+          </button>
+
+          <div className="nav-bar-item">
+            <label htmlFor="paper-type">Paper Type:</label>
+            <select
+              id="paper-type"
+              name="paper-type"
+              onChange={(event) => {
+                handlePaperType(event.target.value);
+              }}
+            >
+              {subjectList.map((subject, index) => (
+                <option key={index} value={subject}>
+                  {subject}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="nav-bar-item">
+            <label htmlFor="startFrom">Start from</label>
+            <input
+              id="startFrom"
+              className="inputField"
+              type="number"
+              value={start}
+              onChange={(event) => {
+                handleStart(event.target.value);
+              }}
+              // placeholder="Start from"
+              min={0}
+            />
+          </div>
+
+          <div className="nav-bar-item">
+            <label htmlFor="questionCount">No. of question</label>
+            <input
+              id="questionCount"
+              className="inputField"
+              type="number"
+              value={numOfQuestion}
+              onChange={(event) => {
+                handleQuestionChange(event.target.value);
+              }}
+              min={1}
+            />
+          </div>
 
           {/* SCREEN RESOLUATION */}
-          <label htmlFor="screen-type">Screen Type:</label>
-          <select
-            id="screen-type"
-            name="screen-type"
-            onChange={(event) => {
-              handleScreenType(event.target.value);
-            }}
-          >
-            <option value="shorts">Shorts</option>
-            <option value="videos">Videos</option>
-          </select>
+          <div className="nav-bar-item">
+            <label htmlFor="screen-type">Screen Type:</label>
+            <select
+              id="screen-type"
+              name="screen-type"
+              onChange={(event) => {
+                handleScreenType(event.target.value);
+              }}
+            >
+              <option value="shorts">Shorts</option>
+              <option value="videos">Videos</option>
+            </select>
+          </div>
 
           {/* SELECH LANGUAGE */}
-          <label htmlFor="screen-type">Language :</label>
-          <select
-            id="screen-type"
-            name="screen-type"
-            onChange={(event) => {
-              handleLanguage(event.target.value);
-            }}
-          >
-            <option value={TEXT.ENGLISH}>{TEXT.ENGLISH}</option>
-            <option value={TEXT.HINDI}>{TEXT.HINDI}</option>
-            <option value={TEXT.HINGLISH}>{TEXT.HINGLISH}</option>
-          </select>
+          <div className="nav-bar-item">
+            {" "}
+            <label htmlFor="screen-type">Language :</label>
+            <select
+              id="screen-type"
+              name="screen-type"
+              onChange={(event) => {
+                handleLanguage(event.target.value);
+              }}
+            >
+              <option value={TEXT.ENGLISH}>{TEXT.ENGLISH}</option>
+              <option value={TEXT.HINDI}>{TEXT.HINDI}</option>
+              <option value={TEXT.HINGLISH}>{TEXT.HINGLISH}</option>
+            </select>
+          </div>
 
           {/* Body font size */}
-          <label htmlFor="bodyFontSize">Body font size</label>
-          <input
-            id="bodyFontSize"
-            className="inputField"
-            type="number"
-            value={bodyFontSize}
-            onChange={(event) => {
-              handleBodyFontSize(event.target.value);
-            }}
-            min={1}
-          />
+          <div className="nav-bar-item">
+            <label htmlFor="bodyFontSize">Body font size</label>
+            <input
+              id="bodyFontSize"
+              className="inputField"
+              type="number"
+              value={bodyFontSize}
+              onChange={(event) => {
+                handleBodyFontSize(event.target.value);
+              }}
+              min={1}
+            />
+          </div>
 
           {/* Body text color */}
-          <label htmlFor="screen-type">Text color :</label>
-          <select
-            id="screen-type"
-            name="screen-type"
-            onChange={(event) => {
-              setTextColor(event.target.value);
-            }}
-          >
-            <option value="Black">Black</option>
-            <option value="White">White</option>
-          </select>
+          <div className="nav-bar-item">
+            <label htmlFor="screen-type">Text color :</label>
+            <select
+              id="screen-type"
+              name="screen-type"
+              onChange={(event) => {
+                setTextColor(event.target.value);
+              }}
+            >
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+            </select>
+          </div>
 
           {/* Exam name */}
-          <label htmlFor="examName">Exam name</label>
-          <input
-            id="examName"
-            className="inputField"
-            type="text"
-            value={examName}
-            onChange={(event) => {
-              setExamName(event.target.value);
-            }}
-            placeholder="ex: JEE"
-          />
+          <div className="nav-bar-item">
+            <label htmlFor="examName">Exam name</label>
+            <input
+              id="examName"
+              className="inputField"
+              type="text"
+              value={examName}
+              onChange={(event) => {
+                setExamName(event.target.value);
+              }}
+              placeholder="ex: JEE"
+            />
+          </div>
 
           {/* Extra info */}
-          <label htmlFor="extraInfo">Extra Info</label>
-          <input
-            id="extraInfo"
-            className="inputField"
-            type="text"
-            value={extraInfo}
-            onChange={(event) => {
-              setExtraInfo(event.target.value);
-            }}
-            placeholder="info"
-          />
+          <div className="nav-bar-item">
+            <label htmlFor="extraInfo">Extra Info</label>
+            <input
+              id="extraInfo"
+              className="inputField"
+              type="text"
+              value={extraInfo}
+              onChange={(event) => {
+                setExtraInfo(event.target.value);
+              }}
+              placeholder="info"
+            />
+          </div>
         </div>
 
         {data &&
